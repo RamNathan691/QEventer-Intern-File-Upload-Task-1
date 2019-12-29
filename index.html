@@ -31,6 +31,10 @@
             let blob = event.target.result;
 
             // Write your code here
+            ref.put(file).then(function(snapshot) {
+                console.log('Uploaded a blob or file!');
+});
+
 
         });
 
