@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+     <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>QEventer</title>
@@ -14,6 +15,19 @@
 
 <script>
 
+    var firebaseConfig = {
+    apiKey: "AIzaSyD5xyY158DzVypmkqRHYmJni9mvehBz9Jk",
+    authDomain: "intern-63d82.firebaseapp.com",
+    databaseURL: "https://intern-63d82.firebaseio.com",
+    projectId: "intern-63d82",
+    storageBucket: "gs://intern-63d82.appspot.com/",
+    messagingSenderId: "536528631890",
+    appId: "1:536528631890:web:785b7c6bf2241b8c81c78b",
+    measurementId: "G-BRBV48X48X"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
     let fileInput = document.getElementById('ip-file');
 
     fileInput.addEventListener('change', inputListener);
@@ -27,12 +41,13 @@
         reader.readAsText(file);
 
         reader.addEventListener('load', (event) => {
-
+            //file uploading code
             let blob = event.target.result;
-
-            // Write your code here
-            ref.put(file).then(function(snapshot) {
-                console.log('Uploaded a blob or file!');
+            var storage=firebase.storage().ref('File/'+file.name);
+             var uploadTask=storage.put(file);
+    
+            
+            console.log('Uploaded a blob or file!');
 });
 
 
